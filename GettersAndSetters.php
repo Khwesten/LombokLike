@@ -17,10 +17,10 @@ class GettersAndSetters
         if ($this->hasAttribute($attributeName)) {
             $attribute = $this->getAttributeName($attributeName);
             if ($isSet) {
-                $this->$attributeName = $arguments[0];
+                $this->$attribute = $arguments[0];
                 return $this;
             } elseif ($isGet) {
-                return $this->$attributeName;
+                return $this->$attribute;
             }
         } else {
             $this->showError();
@@ -43,14 +43,14 @@ class GettersAndSetters
         return null;
     }
 
-    private function hasAttribute($nameAttr)
+    private function hasAttribute($name)
     {
         $result = false;
 
-        $this->nameAttrWithUnderscore = "_" . $nameAttr;
+        $this->nameAttrWithUnderscore = "_" . $name;
 
         if (
-            property_exists($this, $nameAttr)
+            property_exists($this, $name)
             || property_exists($this, $this->nameAttrWithUnderscore)
         ) {
             $result = true;
@@ -59,10 +59,10 @@ class GettersAndSetters
         return $result;
     }
 
-    private function getAttributeName($nameAttr)
+    private function getAttributeName($name)
     {
         $attribute = (property_exists($this, $this->nameAttrWithUnderscore))
-            ? $attribute = $this->nameAttrWithUnderscore : $nameAttr;
+            ? $this->nameAttrWithUnderscore : $name;
 
         return $attribute;
     }
