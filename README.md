@@ -32,6 +32,13 @@ If you want methods can be display in your IDE, use the PHPdoc on attributes:
         protected $nameOfAttribute;
         ...
     }
+    
+and use:
+
+    $test = new Test();
+    $test->setNameOfAttribute("Test");
+    echo $test->getNameOfAttribute();
+    //Result display is: Test
 
 ## Author
 
