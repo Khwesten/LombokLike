@@ -3,6 +3,10 @@ You don't need create all getters and setters in your class, only create attribu
 
 ## Getting Started
 
+npm install
+
+    npm install getters-and-setters
+
 ### Test Tutorial
 
 Include GettersAndSetters class where you need:
