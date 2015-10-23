@@ -1,5 +1,5 @@
 # GettersAndSetters
-You dont need create all getters and setters in your class, only create annotations for the methods.
+You dont need create all getters and setters in your class, only create attributes and comment him for display in your IDE.
 
 ## Getting Started
 
