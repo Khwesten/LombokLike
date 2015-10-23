@@ -1,6 +1,10 @@
 # GettersAndSetters
 You don't need create all getters and setters in your class, only create attributes and comment it for display in your IDE.
 
+## Version
+
+@1.1.0 - Adaptated to old codes which were used with underscore before name of attribute.
+
 ## Getting Started
 
 npm install
