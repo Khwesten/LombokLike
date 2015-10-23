@@ -1,5 +1,5 @@
 # GettersAndSetters
-You dont need create all getters and setters in your class, only create attributes and comment him for display in your IDE.
+You don't need create all getters and setters in your class, only create attributes and comment it for display in your IDE.
 
 ## Getting Started
 
@@ -9,19 +9,19 @@ Include GettersAndSetters class where you need:
 
     include 'GettersAndSetters.php';
 
-Extend him on all classes that you need:
+Extend it on all classes that you need:
 
     class Test extends GettersAndSetters {}
 
-Use protected attributes to him can be manipulated:
+Use protected attributes to it can be manipulated:
 
     class Test extends GettersAndSetters {
         ...
         protected $name;
         ...
     }
-    
-If you want methods can be display in your IDE, use the PHPdoc on attributes:
+
+If you want methods can be displayed in your IDE, use the PHPdoc on attributes:
 
     class Test extends GettersAndSetters {
         ...
@@ -32,7 +32,7 @@ If you want methods can be display in your IDE, use the PHPdoc on attributes:
         protected $nameOfAttribute;
         ...
     }
-    
+
 and use:
 
     $test = new Test();
