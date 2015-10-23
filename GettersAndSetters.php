@@ -1,29 +1,34 @@
 <?php
 
-class GettersAndSetters {
+class GettersAndSetters
+{
+    protected $nameAttrWithUnderscore;
 
-    public function __call($methodName, $arguments) {
+    public function __call($methodName, $arguments)
+    {
         $isGet = strstr($methodName, "get");
         $isSet = strstr($methodName, "set");
 
         $nameAttrWithoutGet = str_replace("get", "", $methodName);
         $nameAttrWithoutSet = str_replace("set", "", $nameAttrWithoutGet);
 
-        $nameAttr = lcfirst($nameAttrWithoutSet);
+        $attributeName = lcfirst($nameAttrWithoutSet);
 
-        if (property_exists($this, $nameAttr)) {
+        if ($this->hasAttribute($attributeName)) {
+            $attribute = $this->getAttributeName($attributeName);
             if ($isSet) {
-                $this->$nameAttr = $arguments[0];
+                $this->$attributeName = $arguments[0];
                 return $this;
-            } else if ($isGet) {
-                return $this->$nameAttr;
+            } elseif ($isGet) {
+                return $this->$attributeName;
             }
         } else {
             $this->showError();
         }
     }
 
-    private function showError() {
+    private function showError()
+    {
         $trace = debug_backtrace();
 
         echo (
@@ -36,6 +41,30 @@ class GettersAndSetters {
         );
 
         return null;
+    }
+
+    private function hasAttribute($nameAttr)
+    {
+        $result = false;
+
+        $this->nameAttrWithUnderscore = "_" . $nameAttr;
+
+        if (
+            property_exists($this, $nameAttr)
+            || property_exists($this, $this->nameAttrWithUnderscore)
+        ) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    private function getAttributeName($nameAttr)
+    {
+        $attribute = (property_exists($this, $this->nameAttrWithUnderscore))
+            ? $attribute = $this->nameAttrWithUnderscore : $nameAttr;
+
+        return $attribute;
     }
 
 }

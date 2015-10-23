@@ -1,6 +1,6 @@
 {
   "name": "getters-and-setters",
-  "version": "0.0.1",
+  "version": "1.1.0",
   "description": "Auxiliar class to you don't need create all methods getters and setters of your class.",
   "main": "index.js",
   "scripts": {
