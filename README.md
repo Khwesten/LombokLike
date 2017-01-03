@@ -3,39 +3,39 @@ You don't need create all getters and setters in your class, only create attribu
 
 ## Version
 
+@1.2.0 - Remove support to codes with underscore and improve to use private attributes.
+
 @1.1.0 - Adaptated to old codes which were used with underscore before name of attribute.
 
 ## Getting Started
 
-npm install
-
-    npm install getters-and-setters
-    
 composer install
     
-    npm install getters-and-setters
+    composer require k-hei/lombok-like
 
 ### Test Tutorial
 
-Include GettersAndSetters class where you need:
+Include LombokLike class where you need:
 
-    include 'GettersAndSetters.php';
+    include 'vendor/autoload.php';
 
 Extend it on all classes that you need:
 
-    class Test extends GettersAndSetters {}
+    class Test extends \LombokLike\BaseEntity {}
 
-Use protected attributes to it can be manipulated:
+Implement magic methods of php:
 
-    class Test extends GettersAndSetters {
+    class Test extends \LombokLike\BaseEntity {
         ...
-        protected $name;
+        private $name;
         ...
+        public function __set($name, $value) { $this->$name = $value; }
+        public function __get($name) { return $this->$name; }
     }
 
 If you want methods can be displayed in your IDE, use the PHPdoc on attributes:
 
-    class Test extends GettersAndSetters {
+    class Test extends \LombokLike\BaseEntity {
         ...
         /**
          * @method typeOfReturn getNameOfAttribute() optionally description
@@ -54,7 +54,7 @@ and use:
 
 ## Author
 
-The GettersAndSetters is created and maintained by [Khwesten Heiner](https://www.facebook.com/khwesten). Heiner is a senior FullStack web developer at [MeuTutor](http://www.meututor.com.br/) and [Locadados](https://www.facebook.com/locadados).
+The GettersAndSetters is created and maintained by [Khwesten Heiner](https://www.facebook.com/khwesten). Heiner is a senior FullStack web developer at [MeuTutor](http://www.meututor.com.br/) and [TeckS](http://tecks.com.br/).
 
 ## License
 
