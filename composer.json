@@ -1,0 +1,13 @@
+{
+    "name": "k-hei/getters-and-setters",
+    "description": "automatic get and set use native function __call",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "khwesten",
+            "email": "k-heiner@hotmail.com"
+        }
+    ],
+    "require": {}
+}
