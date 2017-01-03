@@ -10,6 +10,10 @@ You don't need create all getters and setters in your class, only create attribu
 npm install
 
     npm install getters-and-setters
+    
+composer install
+    
+    npm install getters-and-setters
 
 ### Test Tutorial
 

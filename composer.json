@@ -1,6 +1,6 @@
 {
-    "name": "k-hei/getters-and-setters",
-    "description": "automatic get and set use native function __call",
+    "name": "k-hei/lombok-like",
+    "description": "automatic get and set use natives function __call, __get and __set",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -9,5 +9,12 @@
             "email": "k-heiner@hotmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^5.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "LombokLike\\": "entity/"
+        }
+    }
 }

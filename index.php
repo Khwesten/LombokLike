@@ -1,25 +1,29 @@
 <?php
 
-include './GettersAndSetters.php';
+include_once 'vendor/autoload.php';
 
-class Test extends GettersAndSetters {
-
-    /**
-     * @method String getName() return the value of attribute name
-     * @method $this setName($value) set the value in attribute name
-     */
-    protected $name;
+class Test extends \LombokLike\BaseEntity {
 
     /**
-     * @method String getNameWithUnderscore() return the value of attribute name
-     * @method $this setNameWithUnderscore($value) set the value in attribute name
+     * @method String getName()
+     * @method void setName($value)
      */
-    protected $_nameWithUnderscore;
+    private $name;
+
+    /**
+     * @method String getNameWithUnderscore()
+     * @method void setNameWithUnderscore($value)
+     */
+    protected $test;
+
+    public function __set($name, $value) { $this->$name = $value; }
+    public function __get($name) { return $this->$name; }
 }
 
 $test = new Test();
-$test->setName("Name");
-$test->setNameWithUnderscore("Name");
+$test->setName("Name test");
+$test->setTest("Test name");
+
 echo $test->getName();
 echo "<br>";
-echo $test->getNameWithUnderscore();
+echo $test->getTest();
