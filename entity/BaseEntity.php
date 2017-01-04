@@ -46,9 +46,9 @@ abstract class BaseEntity
         }
     }
 
-    public abstract function __get($name);
+    public abstract function get($name);
 
-    public abstract function __set($name, $value);
+    public abstract function set($name, $value);
 
     private function showError()
     {

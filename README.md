@@ -3,6 +3,8 @@ You don't need create all getters and setters in your class, only create attribu
 
 ## Version
 
+@1.2.1 - Change name of methos from __get to get to override.
+
 @1.2.0 - Remove support to codes with underscore and improve to use private attributes.
 
 @1.1.0 - Adaptated to old codes which were used with underscore before name of attribute.
@@ -29,8 +31,8 @@ Implement magic methods of php:
         ...
         private $name;
         ...
-        public function __set($name, $value) { $this->$name = $value; }
-        public function __get($name) { return $this->$name; }
+        public function set($name, $value) { $this->$name = $value; }
+        public function get($name) { return $this->$name; }
     }
 
 If you want methods can be displayed in your IDE, use the PHPdoc on attributes:

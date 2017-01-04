@@ -16,8 +16,8 @@ class Test extends \LombokLike\BaseEntity {
      */
     protected $test;
 
-    public function __set($name, $value) { $this->$name = $value; }
-    public function __get($name) { return $this->$name; }
+    public function set($name, $value) { $this->$name = $value; }
+    public function get($name) { return $this->$name; }
 }
 
 $test = new Test();
