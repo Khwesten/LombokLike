@@ -1,6 +1,6 @@
 {
     "name": "k-hei/lombok-like",
-    "description": "automatic get and set use natives function __call, __get and __set",
+    "description": "Automatic get and set using native function __call",
     "type": "library",
     "license": "MIT",
     "authors": [
