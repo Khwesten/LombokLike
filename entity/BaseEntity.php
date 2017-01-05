@@ -4,6 +4,12 @@ namespace LombokLike\Entity;
 
 use LombokLike\Exception\LombokLikeException;
 
+/**
+ * Created by IntelliJ IDEA.
+ * User: k-heiner@hotmail.com
+ * Date: 22/10/2015
+ * Time: 12:22
+ */
 abstract class BaseEntity
 {
     const STRING_METHOD_GET = "get";

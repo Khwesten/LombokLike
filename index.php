@@ -2,7 +2,8 @@
 
 include_once 'vendor/autoload.php';
 
-class Test extends \LombokLike\Entity\BaseEntity {
+class Test extends \LombokLike\Entity\BaseEntity
+{
 
     /**
      * @method String getName()
@@ -14,7 +15,7 @@ class Test extends \LombokLike\Entity\BaseEntity {
      * @method String getYears()
      * @method void setYears($value)
      */
-    protected $years;
+    private $years;
 }
 
 $test = new Test();

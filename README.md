@@ -52,7 +52,7 @@ If you call a unknown method, receive a LombokException:
     
     $test->setUnknowAttr("Unkmow property");
       
-    Fatal error: Uncaught Call to undefined function: setUnknowAttr() In: F:\path\file.php On line: 99 
+    Fatal error: Uncaught Call to undefined function: setUnknowAttr() In: F:\...\file.php On line: 99 
     thrown in F:\...\LombokLike\entity\Base.php on line 100
 
 ## Author

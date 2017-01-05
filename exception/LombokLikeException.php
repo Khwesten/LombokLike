@@ -10,15 +10,15 @@ namespace LombokLike\Exception;
  */
 class LombokLikeException extends \Exception implements \LombokLike\Exception\IException
 {
-    protected $message = 'Unknown exception';     // Exception message
-    protected $code    = 0;                       // User-defined exception code
-    protected $file;                              // Source filename of exception
-    protected $line;                              // Source line of exception
+    protected $message = 'Unknown exception';
+    protected $code = 0;
+    protected $file;
+    protected $line;
 
     public function __construct($message = null, $code = 0)
     {
         if (!$message) {
-            throw new $this('Unknown '. get_class($this));
+            throw new $this('Unknown ' . get_class($this));
         }
         parent::__construct($message, $code);
     }
