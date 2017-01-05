@@ -8,7 +8,7 @@ namespace LombokLike\Exception;
  * Date: 04/01/2017
  * Time: 22:15
  */
-class LombokException extends \Exception implements \LombokLike\Exception\IException
+class LombokLikeException extends \Exception implements \LombokLike\Exception\IException
 {
     protected $message = 'Unknown exception';     // Exception message
     protected $code    = 0;                       // User-defined exception code

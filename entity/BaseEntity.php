@@ -2,9 +2,9 @@
 
 namespace LombokLike\Entity;
 
-use LombokLike\Exception\LombokException;
+use LombokLike\Exception\LombokLikeException;
 
-abstract class Base
+abstract class BaseEntity
 {
     const STRING_METHOD_GET = "get";
     const STRING_METHOD_SET = "set";
@@ -97,7 +97,7 @@ abstract class Base
 
     private static function throwException($code, $function, $file, $line)
     {
-        throw new LombokException("Call to undefined function: {$function}() In: {$file} On line: {$line}");
+        throw new LombokLikeException("Call to undefined function: {$function}() In: {$file} On line: {$line}");
     }
 
 }
