@@ -1,11 +1,13 @@
-# GettersAndSetters
-You don't need create all getters and setters in your class, only create attributes and comment it for display in your IDE.
+# Lombok-like
+You don't need create all getters and setters in your class. Only create attributes extends lombok-like and comment it for display in your IDE autocomplete.
 
 ## Version
 
+@2.1.0 - Throw an exception.
+
 @2.0.0 - Removed abstract methods and change reflection to closure.
 
-@1.2.1 - Change name of methos from __get to get to override.
+@1.2.1 - Change name of methods from __get to get for override.
 
 @1.2.0 - Remove support to codes with underscore and improve to use private attributes.
 
@@ -46,14 +48,12 @@ And use!
     echo $test->getNameOfAttribute();
     //Result display is: Test
     
-If you call a unknown method, receive a fatal error:
+If you call a unknown method, receive a LombokException:
     
     $test->setUnknowAttr("Unkmow property");
       
-    Fatal error:
-    Call to undefined function: setUnknowAttr()
-    In: F:\htdocs\projects\LombokLike\index.php
-    On line: 24
+    Fatal error: Uncaught Call to undefined function: setUnknowAttr() In: F:\path\file.php On line: 99 
+    thrown in F:\...\LombokLike\entity\Base.php on line 100
 
 ## Author
 

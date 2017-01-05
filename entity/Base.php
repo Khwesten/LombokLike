@@ -1,8 +1,10 @@
 <?php
 
-namespace LombokLike;
+namespace LombokLike\Entity;
 
-abstract class BaseEntity
+use LombokLike\Exception\LombokException;
+
+abstract class Base
 {
     const STRING_METHOD_GET = "get";
     const STRING_METHOD_SET = "set";
@@ -37,7 +39,7 @@ abstract class BaseEntity
                 $closureSet($this, $attributeName, $value);
             }
         } else {
-            self::lombokFatalShowError();
+            self::generateLombokException();
         }
 
     }
@@ -80,28 +82,22 @@ abstract class BaseEntity
         return lcfirst(str_replace($textToRemove, self::STRING_EMPTY, $var));
     }
 
-    private static function lombokErrorHandler($code, $function, $file, $line) {
-        echo
-            "<br><div style=\"clear: both\"></div>" .
-            "<strong style=\"color: red;\">Fatal error:</strong><br>" .
-            "Call to undefined function: <i>{$function}()</i><br>" .
-            "In: <i>{$file}</i><br>" .
-            "On line: <i>{$line}</i>" .
-            "<br>";
-        die();
-    }
-
-    private static function lombokFatalShowError()
+    private static function generateLombokException()
     {
         $trace = debug_backtrace();
 
-        $lastIndexOfArray = sizeof($trace)-1;
+        $lastIndexOfArray = sizeof($trace) - 1;
 
         $lastErrorFile = $trace[$lastIndexOfArray]['file'];
         $lastErrorLine = $trace[$lastIndexOfArray]['line'];
         $lastErrorFunction = $trace[$lastIndexOfArray]['function'];
 
-        self::lombokErrorHandler(E_ERROR, $lastErrorFunction, $lastErrorFile, $lastErrorLine);
+        self::throwException(E_ERROR, $lastErrorFunction, $lastErrorFile, $lastErrorLine);
+    }
+
+    private static function throwException($code, $function, $file, $line)
+    {
+        throw new LombokException("Call to undefined function: {$function}() In: {$file} On line: {$line}");
     }
 
 }

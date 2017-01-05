@@ -2,7 +2,7 @@
 
 include_once 'vendor/autoload.php';
 
-class Test extends \LombokLike\BaseEntity {
+class Test extends \LombokLike\Entity\Base {
 
     /**
      * @method String getName()
