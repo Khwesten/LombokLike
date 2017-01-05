@@ -84,12 +84,14 @@ abstract class BaseEntity
     {
         $trace = debug_backtrace();
 
-        $error = "Call to undefined function: <i>{$trace[2]['function']}()</i><br>" .
+        $error = "<div style=\"clear: both\"></div>" .
+            "<strong style=\"color: red;\">Fatal error:</strong><br>" .
+            "Call to undefined function: <i>{$trace[2]['function']}()</i><br>" .
             "In: <i>{$trace[1]['file']}</i><br>" .
             "On line: <i>{$trace[1]['line']}</i>" .
             "<br>";
 
-        trigger_error($error, E_USER_ERROR);
+        echo $error;
     }
 
 }

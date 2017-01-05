@@ -8,7 +8,7 @@ class Test extends \LombokLike\BaseEntity {
      * @method String getName()
      * @method void setName($value)
      */
-    private $name = 'test';
+    private $name;
 
     /**
      * @method String getYears()
@@ -25,6 +25,6 @@ $test->setUnknowAttr("Unkmow property");
 
 echo $test->getName();
 echo "<br>";
-echo $test->getTest();
+echo $test->getYears();
 echo "<br>";
 echo $test->getUnknowAttr();
