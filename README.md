@@ -3,6 +3,8 @@ You don't need create all getters and setters in your class, only create attribu
 
 ## Version
 
+@2.0.0 - Removed abstract methods and change reflection to closure.
+
 @1.2.1 - Change name of methos from __get to get to override.
 
 @1.2.0 - Remove support to codes with underscore and improve to use private attributes.
@@ -25,16 +27,6 @@ Extend it on all classes that you need:
 
     class Test extends \LombokLike\BaseEntity {}
 
-Implement magic methods of php:
-
-    class Test extends \LombokLike\BaseEntity {
-        ...
-        private $name;
-        ...
-        public function set($name, $value) { $this->$name = $value; }
-        public function get($name) { return $this->$name; }
-    }
-
 If you want methods can be displayed in your IDE, use the PHPdoc on attributes:
 
     class Test extends \LombokLike\BaseEntity {
@@ -47,17 +39,26 @@ If you want methods can be displayed in your IDE, use the PHPdoc on attributes:
         ...
     }
 
-and use:
+And use!
 
     $test = new Test();
     $test->setNameOfAttribute("Test");
     echo $test->getNameOfAttribute();
     //Result display is: Test
+    
+If you call a unknown method, receive a fatal error:
+    
+    $test->setUnknowAttr("Unkmow property");
+      
+    Fatal error:
+    Call to undefined function: setUnknowAttr()
+    In: F:\htdocs\projects\LombokLike\index.php
+    On line: 24
 
 ## Author
 
-The GettersAndSetters is created and maintained by [Khwesten Heiner](https://www.facebook.com/khwesten). Heiner is a senior FullStack web developer at [MeuTutor](http://www.meututor.com.br/) and [TeckS](http://tecks.com.br/).
+The LombokLike is created and maintained by [Khwesten Heiner](https://www.facebook.com/khwesten). Heiner is a senior FullStack web developer at [MeuTutor](http://www.meututor.com.br/) and [TeckS](http://tecks.com.br/).
 
 ## License
 
-The GettersAndSetters is released under the MIT public license.
+The LombokLike is released under the MIT public license.

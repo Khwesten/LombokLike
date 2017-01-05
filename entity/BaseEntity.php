@@ -8,49 +8,79 @@ abstract class BaseEntity
     const STRING_METHOD_SET = "set";
     const STRING_EMPTY = "";
 
-    private $propertiesName = [];
+    private static $indexOfGetAttributeName;
+    private static $indexOfSetAttributeName;
 
     public function __call($methodName, $arguments)
     {
-        $indexOfGetAttributeName = strpos($methodName, self::STRING_METHOD_GET);
-        $indexOfSetAttributeName = strpos($methodName, self::STRING_METHOD_SET);
+        self::$indexOfGetAttributeName = strpos($methodName, self::STRING_METHOD_GET);
+        self::$indexOfSetAttributeName = strpos($methodName, self::STRING_METHOD_SET);
 
-        $attributeName = "";
+        $attributeName = self::getAttributeName($methodName);
 
-        if ($indexOfGetAttributeName === 0 || $indexOfSetAttributeName === 0) {
-            $attributeName = lcfirst(
-                str_replace([self::STRING_METHOD_GET, self::STRING_METHOD_SET], self::STRING_EMPTY, $methodName)
-            );
-        }
+        $get = function ($object, $attribute) {
+            return $object->$attribute;
+        };
 
-        $isGetMethod = ($indexOfGetAttributeName === 0);
-        $isSetMethod = ($indexOfSetAttributeName === 0);
+        $set = function ($object, $attribute, $value) {
+            return $object->$attribute = $value;
+        };
 
-        $reflectClass = new \ReflectionClass($this);
+        $closureGet = \Closure::bind($get, null, $this);
+        $closureSet = \Closure::bind($set, null, $this);
 
-        $properties = $reflectClass->getProperties();
-
-        foreach ($properties as $property) {
-            $this->propertiesName[$property->name] = '';
-        }
-
-        if (array_key_exists($attributeName, $this->propertiesName)) {
-            if ($isGetMethod) {
-                return $this->$attributeName;
-            } else if ($isSetMethod) {
+        if (property_exists($this, $attributeName)) {
+            if (self::isGetMethod()) {
+                return $closureGet($this, $attributeName);
+            } else if (self::isSetMethod()) {
                 $value = $arguments[0];
-                $this->$attributeName = $value;
+                $closureSet($this, $attributeName, $value);
             }
         } else {
             $this->showError();
         }
+
     }
 
-    public abstract function get($name);
+    private static function getAttributeName($methodNAme)
+    {
+        if (self::$indexOfGetAttributeName === 0) {
+            $attributeName = self::removeGetFromInit($methodNAme);
+        } elseif (self::$indexOfSetAttributeName === 0) {
+            $attributeName = self::removeSetFromInit($methodNAme);
+        } else {
+            $attributeName = self::STRING_EMPTY;
+        }
 
-    public abstract function set($name, $value);
+        return $attributeName;
+    }
 
-    private function showError()
+    private static function isGetMethod()
+    {
+        return (self::$indexOfGetAttributeName === 0);
+    }
+
+    private static function isSetMethod()
+    {
+        return (self::$indexOfSetAttributeName === 0);
+    }
+
+    private static function removeGetFromInit($var)
+    {
+        return self::removeTextFromInit(self::STRING_METHOD_GET, $var);
+    }
+
+    private static function removeSetFromInit($var)
+    {
+        return self::removeTextFromInit(self::STRING_METHOD_SET, $var);
+    }
+
+    private static function removeTextFromInit($textToRemove, $var)
+    {
+        return lcfirst(str_replace($textToRemove, self::STRING_EMPTY, $var));
+    }
+
+    private static function showError()
     {
         $trace = debug_backtrace();
 
