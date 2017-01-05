@@ -37,7 +37,7 @@ abstract class BaseEntity
                 $closureSet($this, $attributeName, $value);
             }
         } else {
-            $this->showError();
+            self::lombokFatalShowError();
         }
 
     }
@@ -80,18 +80,28 @@ abstract class BaseEntity
         return lcfirst(str_replace($textToRemove, self::STRING_EMPTY, $var));
     }
 
-    private static function showError()
+    private static function lombokErrorHandler($code, $function, $file, $line) {
+        echo
+            "<br><div style=\"clear: both\"></div>" .
+            "<strong style=\"color: red;\">Fatal error:</strong><br>" .
+            "Call to undefined function: <i>{$function}()</i><br>" .
+            "In: <i>{$file}</i><br>" .
+            "On line: <i>{$line}</i>" .
+            "<br>";
+        die();
+    }
+
+    private static function lombokFatalShowError()
     {
         $trace = debug_backtrace();
 
-        $error = "<div style=\"clear: both\"></div>" .
-            "<strong style=\"color: red;\">Fatal error:</strong><br>" .
-            "Call to undefined function: <i>{$trace[2]['function']}()</i><br>" .
-            "In: <i>{$trace[1]['file']}</i><br>" .
-            "On line: <i>{$trace[1]['line']}</i>" .
-            "<br>";
+        $lastIndexOfArray = sizeof($trace)-1;
 
-        echo $error;
+        $lastErrorFile = $trace[$lastIndexOfArray]['file'];
+        $lastErrorLine = $trace[$lastIndexOfArray]['line'];
+        $lastErrorFunction = $trace[$lastIndexOfArray]['function'];
+
+        self::lombokErrorHandler(E_ERROR, $lastErrorFunction, $lastErrorFile, $lastErrorLine);
     }
 
 }
